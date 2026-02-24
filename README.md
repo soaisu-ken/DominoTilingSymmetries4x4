@@ -1,209 +1,70 @@
-README.md
+# Domino Tiling Algebraic Symmetry & Classification Verifiers
 
+This repository contains Python scripts to verify the combinatorial and algebraic properties of domino tilings in a $4 \times 4$ natural square, as presented in the paper:
+**"Algebraic Symmetries and the 90-Degree Rotation Complementarity Theorem in Domino Tilings of the $4 \times 4$ Natural Square"** by Kenichi Takemura.
 
-# Domino Tiling Symmetry Verifier (Calculator 0)
+---
 
-This repository contains **Calculator 0**, a Python script designed to verify the combinatorial and group-theoretic properties of domino tilings in a $4 \times 4$ natural square, specifically for the results presented in Theorem 2 of the associated paper.
+## 🔢 Calculator 0: Symmetry and Burnside's Lemma Verifier
 
-## Functionality
-This program performs the following tasks:
-1.  **Exhaustive Verification of Fixed Points:** It calculates the number of fixed points $|\text{Fix}(g)|$ for each of the 8 elements of the dihedral group $D_4$ acting on the 36 distinct domino tilings.
-2.  **Reproduction of Paper Results:** The output matches the exact values listed in Theorem 2 and Table 2 of the manuscript, confirming the 9 symmetry classes (families).
-3.  **Pattern ID Mapping:** It explicitly maps each pattern ID (P1–P36) to its respective symmetry class and its behavior under rotation/reflection.
+This script (**calculator0_symmetry_check.py**) verifies the combinatorial and group-theoretic results presented in Theorem 2.
 
-## Requirements
-* **Python 3.x**
-* **NumPy** (The script uses NumPy for potential future grid manipulations, though the core logic is based on standard Python lists.)
+### Functionality
+1. **Exhaustive Verification of Fixed Points:** It calculates $|\text{Fix}(g)|$ for each of the 8 elements of the dihedral group $D_4$ acting on the 36 tilings.
+2. **Reproduction of Paper Results:** Confirms the 9 symmetry classes (families) as listed in Table 2.
+3. **Pattern ID Mapping:** Explicitly maps each pattern (P1–P36) to its respective symmetry class and behavior under rotation/reflection.
 
-To install the dependency, run:
+---
+
+## 🔢 Verifier No.1: 90-Degree Rotation Product Sum
+
+Verifies the **"90-Degree Rotation Product Sum Complementarity Theorem"**.
+
+### Verified Theorem
+For all 36 patterns $P$:
+$$S_{\text{prod}}(P) + S_{\text{prod}}(P^{90}) = 1,428$$
+* **File:** `domino_tiling_rotation_verifier.py`
+
+---
+
+## 🔢 Verifier No.2: Power Sums of 2-Block Sums
+
+Verifies the invariance of power sums $S_{\mathrm{sum}}^k(P) = \sum (x_i + y_i)^k$ for 18 specific pairs.
+
+| $k$ | Identity (Invariant Sum) |
+| :---: | :--- |
+| **1** | $S_{\text{sum}}^1(P_i) + S_{\text{sum}}^1(P_j) = 272$ |
+| **2** | $S_{\text{sum}}^2(P_i) + S_{\text{sum}}^2(P_j) = 5,848$ |
+| **3** | $S_{\text{sum}}^3(P_i) + S_{\text{sum}}^3(P_j) = 141,032$ |
+* **File:** `power_sum_verifier.py`
+
+---
+
+## 🔢 Verifier No.3: 2-Block Product Square Sum
+
+Verifies that $S_{\mathrm{prod}^2}(P) = \sum (x_i y_i)^2$ congregates into four specific values for the 18 pairs.
+$$S_{\text{prod}^2}(P_i) + S_{\text{prod}^2}(P_j) \in \{ 219,324, \ 219,444, \ 221,244, \ 221,364 \}$$
+* **File:** `product_square_pair_sum_verifier.py`
+
+---
+
+## 🔢 Verifier No.4: Complete Complementary Pairs
+
+Confirms that all 36 patterns are uniquely partitioned into 18 **Complete Complementary Pairs** satisfying all four algebraic metrics simultaneously.
+* **File:** `complete_complementary_pair_verifier.py`
+
+---
+
+## 🛠 Installation & Usage
+
+### Requirements
+* Python 3.x
+* NumPy
+
 ```bash
 pip install numpy
-Usage
-Run the script from your terminal:
+Execution
+Run any of the scripts from your terminal, for example:
 Bash
 
 python calculator0_symmetry_check.py
-Significance in the Manuscript
-This script provides the computational evidence requested during the peer-review process. It ensures that the enumeration of the 36 tilings and their classification into 9 families via Burnside's Lemma is mathematically rigorous and reproducible.
-
-
-
-Domino Tiling Rotation Invariant Verifier No.1
-This repository contains the Python code used for the numerical verification of algebraic symmetries in domino tilings of the $4 \times 4$ natural square. Specifically, it verifies the "90-Degree Rotation Product Sum Complementarity Theorem" presented in the associated academic paper.
-Associated Publication
-The results verified by this program are published in the following paper:
-Title: Algebraic Symmetries and the 90-Degree Rotation Complementarity Theorem in Domino Tilings of the $4 \times 4$ Natural Square
-Author: Kenichi Takemura
-
-Verified Theorem
-This program exhaustively verifies that the following identity holds for all 36 distinct domino tiling patterns $P$of the $4 \times 4$ grid:
-$$S_{\text{prod}}(P) + S_{\text{prod}}(P^{90}) = C_{\text{prod}} = 1,428$$
-Where $S_{\text{prod}}(P)$ is the sum of the products of the numbers covered by each 2-block domino in tiling $P$, and $P^{90}$ is the tiling rotated $90^\circ$ clockwise.
-Requirements
-The program runs on Python 3.x and requires the following library:
-Bash
-
-numpy
-Installation
-Bash
-
-pip install numpy
-How to Run the Code
-	1	Download the file domino_tiling_rotation_verifier.py (or the file containing the provided code).
-	2	Execute the Python script from your terminal:
-Bash
-
-python domino_tiling_rotation_verifier.py
-Understanding the Output
-Upon execution, the program outputs a LaTeX-formatted table containing the verification results. Key columns in the output table include:
-Column
-Description
-$\mathbf{P_i}$
-The Tiling ID under verification (P1 through P36).
-$\mathbf{S_{\text{prod}}(P_i)}$
-The 2-block product sum for $P_i$.
-$\mathbf{P_j}$
-The Tiling ID corresponding to the $90^\circ$ rotated pattern ($P_i^{90}$).
-$\mathbf{S_{\text{prod}}(P_j)}$
-The 2-block product sum for the rotated pattern $P_j$.
-Total Sum
-The sum $S_{\text{prod}}(P_i) + S_{\text{prod}}(P_j)$ (Expected: 1,428).
-Match
-Verification check ($\checkmark$ for success, $\text{FAIL}$ otherwise).
-Code Structure Highlights
-	•	NATURAL_SQUARE: Defines the standard numerical configuration of the $4 \times 4$ grid (1 to 16).
-	•	PATTERNS_RAW: Defines the 36 unique tiling topologies using block labels (A, B, C...).
-	•	parse_pattern_to_domino_values: Extracts the pairs of numbers covered by each domino.
-	•	calculate_s_prod: Computes the sum of products, $S_{\text{prod}}$.
-	•	get_rotated_pattern_str: Performs the $90^\circ$ clockwise geometric rotation.
-	•	normalize_pattern_str / find_rotated_pair_id: These crucial functions normalize the block labels of the rotated pattern to correctly identify the corresponding Tiling ID (P1-P36) in the master list.
-License
-[Insert License Information Here, e.g., MIT License / Creative Commons 4.0]
-
-
-————
-Domino Tiling Rotation Invariant Verifier No.2
-
-This repository contains the Python code for verifying the Complementarity Theorem for the Power Sums of 2-Block Sums in domino tilings of the $4 \times 4$ natural square.
-The program numerically confirms that for 18 specific pairs of algebraically symmetric tilings, the sum of their power sums $S_{\mathrm{sum}}^k(P) = \sum_{i=1}^8 (x_i + y_i)^k$ is invariant for powers $k=1, 2, 3$ but congregates into four distinct values for $k=4$.
-Associated Publication
-The verification results generated by this program are featured in Section 4 of the following paper:
-Title: Algebraic Symmetries and the 90-Degree Rotation Complementarity Theorem in Domino Tilings of the $4 \times 4$ Natural Square
-Verified Identities (Summary)
-The program verifies that for the 18 defined algebraically symmetric pairs $(P_i, P_j)$, the following identity holds for $k=1, 2, 3$, and the congregation result for $k=4$:
-k
-Identity (Invariant Ck / Congregation Set)
-1
-$S_{\text{sum}}^1(P_i) + S_{\text{sum}}^1(P_j) = \mathbf{272}$ (Invariant)
-2
-$S_{\text{sum}}^2(P_i) + S_{\text{sum}}^2(P_j) = \mathbf{5,848}$ (Invariant)
-3
-$S_{\text{sum}}^3(P_i) + S_{\text{sum}}^3(P_j) = \mathbf{141,032}$ (Invariant)
-4
-$S_{\text{sum}}^4(P_i) + S_{\text{sum}}^4(P_j) \in \{ 3,605,224, \ 3,606,664, \ 3,628,264, \ 3,629,704 \}$(Congregates into 4 values)
-Usage
-Install the required dependencies:
-Bash
-
-pip install numpy
-Execute the Python script:
-Bash
-
-python power_sum_verifier.py
-Output Interpretation
-The execution results are printed to the console in a table format. The output confirms that the sum for each pair for $k=1$ to $k=3$ matches the respective invariant $C_k$ values, establishing the three $S_{\mathrm{sum}}^k$ conditions for the Extended High-Order Complementary Identity.
-Pair (Pi , Pj )
-Ssum1 Sum
-Ssum2 Sum
-Ssum3 Sum
-Ssum4 Sum
-P01-P36
-272
-5,848
-141,032
-3,606,664
-P08-P24
-272
-5,848
-141,032
-3,628,264
-...
-...
-...
-...
-...
-
-
-————
-Domino Tiling Rotation Invariant Verifier No.3
-
-This repository contains the Python code for verifying the higher-order algebraic symmetries inherent in the domino tilings of the $4 \times 4$ natural square.
-The program numerically checks the values to which the pair sum of the "2-Block Product Square Sum," $S_{\mathrm{prod}^2}(P) = \sum_{i=1}^8 (x_i y_i)^2$, congregates across 18 specific pairs of algebraically symmetric tilings $(P_i, P_j)$.
-Associated Publication
-The verification results generated by this program are featured in Section 4 (Analysis of Higher-Order Complementary Identities) of the following paper:
-Title: Algebraic Symmetries and the 90-Degree Rotation Complementarity Theorem in Domino Tilings of the $4 \times 4$ Natural Square
-
-Verified Analytical Result
-The program verifies that for the 18 defined algebraically symmetric pairs $(P_i, P_j)$, the pair sum congregates into one of the following four values (Higher-Order Congregation Values):
-$$S_{\text{prod}^2}(P_i) + S_{\text{prod}^2}(P_j) \in \{ 219,324, \ 219,444, \ 221,244, \ 221,364 \}$$
-Usage
-	1	Install the required dependencies:Bashpip install numpy
-	2	
-	3	Execute the Python script:Bashpython product_square_pair_sum_verifier.py
-	4	
-Output Interpretation
-The execution results are printed to the console, confirming that the $S_{\text{prod}^2}$ sum for all pairs matches one of the four values listed above.
-Pair (Pi , Pj )
-Sprod2 (Pi )
-Sprod2 (Pj )
-Pair Sum
-P01-36
-120,432
-99,012
-219,444
-P09-18
-117,057
-104,307
-221,364
-...
-...
-...
-...
-Observed Values
-N/A
-N/A
-4 Congregation Values
-
-——————
-Domino Tiling Rotation Invariant Verifier No.4
-This repository contains the Python code for verifying the existence and unique partition of Complete Complementary Pairs based on the Extended High-Order Complementary Identity in the domino tilings of the $4 \times 4$ natural square.
-The program searches all 36 tiling patterns for pairs $(P_i, P_j)$ where the sum of four distinct algebraic metrics ($S_{\mathrm{sum}}^1, S_{\mathrm{sum}}^2, S_{\mathrm{sum}}^3, S_{\mathrm{prod}}$) simultaneously satisfies its respective invariant constant. The ultimate goal is to confirm that all 36 patterns are uniquely classified into 18 such pairs.
-Associated Publication and Theorem
-This program numerically proves the theorem concerning the Extended High-Order Complementary Identitydetailed in the following paper:
-Title: Algebraic Symmetries and the 90-Degree Rotation Complementarity Theorem in Domino Tilings of the $4 \times 4$ Natural Square
-Extended High-Order Complementary Identity (Theorem)
-A pair $(P_i, P_j)$ is defined as a Complete Complementary Pair if it simultaneously satisfies all four of the following identities:
-Identity
-Sum Definition
-Invariant C
-$\mathbf{S_{\mathrm{sum}}^1}$
-$\sum (x+y)^1$
-$C_1 = 272$
-$\mathbf{S_{\mathrm{sum}}^2}$
-$\sum (x+y)^2$
-$C_2 = 5,848$
-$\mathbf{S_{\mathrm{sum}}^3}$
-$\sum (x+y)^3$
-$C_3 = 141,032$
-$\mathbf{S_{\mathrm{prod}}}$
-$\sum (x \cdot y)$
-$C_{\mathrm{prod}} = 1,428$
-Usage
-	1	Install the required dependencies:Bashpip install numpy
-	2	
-	3	Execute the Python script:Bashpython complete_complementary_pair_verifier.py
-	4	
-Output Interpretation
-The program searches for 18 Complete Complementary Pairs among all 36 patterns and reports whether the unique partition was successful.
-	•	Upon successful verification: The output will confirm: "SUCCESS: All 36 tilings are uniquely partitioned into 18 Complete Complementary Pairs, as stated by the theorem."
-	•	Details for each discovered pair will be printed, showing that the sum of the four algebraic metrics matches the target invariants ($C_1, C_2, C_3, C_{\mathrm{prod}}$).
