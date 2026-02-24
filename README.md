@@ -1,4 +1,33 @@
 README.md
+
+
+# Domino Tiling Symmetry Verifier (Calculator 0)
+
+This repository contains **Calculator 0**, a Python script designed to verify the combinatorial and group-theoretic properties of domino tilings in a $4 \times 4$ natural square, specifically for the results presented in Theorem 2 of the associated paper.
+
+## Functionality
+This program performs the following tasks:
+1.  **Exhaustive Verification of Fixed Points:** It calculates the number of fixed points $|\text{Fix}(g)|$ for each of the 8 elements of the dihedral group $D_4$ acting on the 36 distinct domino tilings.
+2.  **Reproduction of Paper Results:** The output matches the exact values listed in Theorem 2 and Table 2 of the manuscript, confirming the 9 symmetry classes (families).
+3.  **Pattern ID Mapping:** It explicitly maps each pattern ID (P1–P36) to its respective symmetry class and its behavior under rotation/reflection.
+
+## Requirements
+* **Python 3.x**
+* **NumPy** (The script uses NumPy for potential future grid manipulations, though the core logic is based on standard Python lists.)
+
+To install the dependency, run:
+```bash
+pip install numpy
+Usage
+Run the script from your terminal:
+Bash
+
+python calculator0_symmetry_check.py
+Significance in the Manuscript
+This script provides the computational evidence requested during the peer-review process. It ensures that the enumeration of the 36 tilings and their classification into 9 families via Burnside's Lemma is mathematically rigorous and reproducible.
+
+
+
 Domino Tiling Rotation Invariant Verifier No.1
 This repository contains the Python code used for the numerical verification of algebraic symmetries in domino tilings of the $4 \times 4$ natural square. Specifically, it verifies the "90-Degree Rotation Product Sum Complementarity Theorem" presented in the associated academic paper.
 Associated Publication
@@ -118,10 +147,10 @@ Verified Analytical Result
 The program verifies that for the 18 defined algebraically symmetric pairs $(P_i, P_j)$, the pair sum congregates into one of the following four values (Higher-Order Congregation Values):
 $$S_{\text{prod}^2}(P_i) + S_{\text{prod}^2}(P_j) \in \{ 219,324, \ 219,444, \ 221,244, \ 221,364 \}$$
 Usage
-	1	Install the required dependencies: Bash  pip install numpy
-	2	   
-	3	Execute the Python script: Bash  python product_square_pair_sum_verifier.py
-	4	   
+	1	Install the required dependencies:Bashpip install numpy
+	2	
+	3	Execute the Python script:Bashpython product_square_pair_sum_verifier.py
+	4	
 Output Interpretation
 The execution results are printed to the console, confirming that the $S_{\text{prod}^2}$ sum for all pairs matches one of the four values listed above.
 Pair (Pi , Pj )
@@ -170,10 +199,10 @@ $\mathbf{S_{\mathrm{prod}}}$
 $\sum (x \cdot y)$
 $C_{\mathrm{prod}} = 1,428$
 Usage
-	1	Install the required dependencies: Bash  pip install numpy
-	2	   
-	3	Execute the Python script: Bash  python complete_complementary_pair_verifier.py
-	4	   
+	1	Install the required dependencies:Bashpip install numpy
+	2	
+	3	Execute the Python script:Bashpython complete_complementary_pair_verifier.py
+	4	
 Output Interpretation
 The program searches for 18 Complete Complementary Pairs among all 36 patterns and reports whether the unique partition was successful.
 	•	Upon successful verification: The output will confirm: "SUCCESS: All 36 tilings are uniquely partitioned into 18 Complete Complementary Pairs, as stated by the theorem."
